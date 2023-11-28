@@ -1,0 +1,41 @@
+<!-- 表示順を考慮して表示 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Run Loadtest</title>
+    <style>
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .image-container .image-item {
+            width: 48%; /* 2 images per row with a small gap between */
+            margin: 5px;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+        }
+        .download-button {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Run Roadtest→Create Graphs</h1>
+<form action="/run_test" method="post">
+    <input type="submit" value="Run Load Test">
+</form>
+<div class="image-container">
+    {% for image_file in image_files %}
+        <div class="image-item">
+            <img src="{{ url_for('static', filename=image_file) }}" alt="{{ image_file }}">
+            <a class="download-button" href="{{ url_for('static', filename=image_file) }}" download="{{ image_file }}">Download</a>
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
